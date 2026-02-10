@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Core Entity: Represents a Visa Type (H-1B) or a Status (EAD C09)
+model VisaOrStatus {
+  id          String   @id @default(uuid())
+  slug        String   @unique // e.g., "h1b", "f1-opt", "tn-canada"
+  name        String   // e.g., "H-1B Specialty Occupation"
+  category    String   // "Visa", "Status", "EAD Code"
+  description String?
+  officialRef String?  // Link to M-274 or USCIS handbook
+  
+  // Relations
+  workAuthorization WorkAuthorization?
+  i9Actions         I9Action[]
+  sources           Source[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Work Authorization Rules
+model WorkAuthorization {
+  id              String       @id @default(uuid())
+  visaId          String       @unique
+  visa            VisaOrStatus @relation(fields: [visaId], references: [id])
+  
+  canWork         Boolean      @default(false)
+  requiresSponsorship Boolean @default(false)
+  maxDuration     String?      // e.g., "3 years initial, 6 years max"
+  restrictions    String?      // e.g., "Specific employer only"
+  
+  // I-9 Specifics
+  documentTypes   String
+}
+
+// I-9 Acceptable Documents (Reference Table)
+model I9Doc {
+  id          String @id @default(uuid())
+  code        String @unique // e.g., "passport", "ead_card"
+  name        String
+  listType    String // "A", "B", "C"
+  description String?
+}
+
+// HR Actions / Triggers
+model I9Action {
+  id          String       @id @default(uuid())
+  visaId      String
+  visa        VisaOrStatus @relation(fields: [visaId], references: [id])
+  
+  trigger     String       // e.g., "Expiration Date", "Change of Status"
+  actionType  String       // "Reverify", "New I-9", "Do Nothing"
+  details     String       // Core guidance text
+  
+  mandatory   Boolean      @default(true)
+}
+
+// Citations & Sources
+model Source {
+  id          String       @id @default(uuid())
+  visaId      String?
+  visa        VisaOrStatus? @relation(fields: [visaId], references: [id])
+  
+  title       String       // e.g., "M-274 Section 6.2"
+  url         String?
+  publicationDate DateTime?
+}
+
+// System Updates
+model ChangeLog {
+  id          String   @id @default(uuid())
+  date        DateTime @default(now())
+  entity      String   // "H-1B"
+  changeType  String   // "Policy Update"
+  description String
+}
+
+// Scenario-Based FAQ Playbook
+model PlaybookScenario {
+  id            String   @id @default(uuid())
+  category      String   // e.g., "Timing", "Documents", "Reverification"
+  scenarioTitle String   
+  question      String   
+  answer        String   
+  recordNote    String   // Documentation pattern for HR audit
+  source        String?  // e.g., "M-274 Section 4.4"
+  sourceUrl     String?  // Direct link to the handbook section
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

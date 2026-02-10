@@ -1,0 +1,118 @@
+:root {
+  --max-width: 1100px;
+  --border-radius: 12px;
+  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+
+  /* Premium Mauve & Light Blue Palette */
+  --foreground-rgb: 15, 23, 42;
+  /* Slate 900 */
+  --background-start-rgb: 240, 249, 255;
+  /* Sky 50 */
+  --background-end-rgb: 255, 255, 255;
+  /* White */
+
+  /* Primary: Soft Vivid Mauve */
+  --glaido-primary: #D8B4FE;
+  /* Purple 300 */
+  --glaido-accent: #BAE6FD;
+  /* Sky 200 */
+
+  --primary-glow: conic-gradient(from 180deg at 50% 50%,
+      #D8B4FE33 0deg,
+      #BAE6FD33 55deg,
+      #E9D5FF33 120deg,
+      #BAE6FD33 160deg,
+      transparent 360deg);
+
+  --secondary-glow: radial-gradient(rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0));
+
+  --tile-start-rgb: 255, 255, 255;
+  --tile-end-rgb: 248, 250, 252;
+  --tile-border: conic-gradient(#D8B4FE80,
+      #D8B4FE40,
+      #D8B4FE30,
+      #D8B4FE20,
+      #D8B4FE10,
+      #D8B4FE10,
+      #D8B4FE80);
+
+  --callout-rgb: 241, 245, 249;
+  --callout-border-rgb: 226, 232, 240;
+  --card-rgb: 255, 255, 255;
+  --card-border-rgb: 226, 232, 240;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Forced Light Theme overrides for consistent "Premium Light" look even in Dark Mode preference */
+    --foreground-rgb: 15, 23, 42;
+    --background-start-rgb: 240, 249, 255;
+    --background-end-rgb: 255, 255, 255;
+
+    --card-rgb: 255, 255, 255;
+    --card-border-rgb: 226, 232, 240;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Navigation Interactivity */
+.navLink {
+  color: #64748b;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navLink:hover {
+  background-color: #F3E8FF;
+  /* Light Mauve */
+  color: var(--glaido-primary);
+  transform: translateY(-1px);
+}
+
+.navLink.active {
+  background-color: var(--glaido-primary);
+  color: white;
+}
+
+/* Update Landing Body for new theme */
+.landingBody {
+  background: linear-gradient(135deg, var(--background-start-rgb) 0%, #ede9fe 100%) !important;
+  color: #1e293b;
+}
+
+.badgeHeader {
+  background: #F3E8FF;
+  color: var(--glaido-primary);
+  border: 1px solid #D8B4FE;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+}

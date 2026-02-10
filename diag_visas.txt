@@ -1,0 +1,110 @@
+[
+  {
+    "id": "5a7098de-729b-4de5-8a06-3229d3c9895b",
+    "slug": "h1b",
+    "name": "H-1B Specialty Occupation",
+    "category": "Visa",
+    "description": "For workers in specialty occupations.",
+    "createdAt": "2026-02-09T19:11:23.178Z",
+    "updatedAt": "2026-02-09T19:11:23.178Z"
+  },
+  {
+    "id": "32f87810-b8bf-41b0-a3fb-7b06c1c4b8a2",
+    "slug": "f1-opt",
+    "name": "F-1 OPT (Post-Completion)",
+    "category": "Status",
+    "description": "Optional Practical Training for F-1 students.",
+    "createdAt": "2026-02-09T19:11:23.196Z",
+    "updatedAt": "2026-02-09T19:11:23.196Z"
+  },
+  {
+    "id": "c4ca98c6-8533-42f4-bddf-3e7ba7928fa2",
+    "slug": "f1-stem-opt",
+    "name": "F-1 STEM OPT Extension",
+    "category": "Status",
+    "description": "24-month extension for STEM degree holders.",
+    "createdAt": "2026-02-09T19:11:23.212Z",
+    "updatedAt": "2026-02-09T19:11:23.212Z"
+  },
+  {
+    "id": "bd5a600a-05ce-4b01-8a4e-4635a81ce193",
+    "slug": "tn",
+    "name": "TN NAFTA Professional",
+    "category": "Visa",
+    "description": "For Canadian and Mexican citizens in specific professions.",
+    "createdAt": "2026-02-09T19:11:23.224Z",
+    "updatedAt": "2026-02-09T19:11:23.224Z"
+  },
+  {
+    "id": "2838cc27-2b64-4956-ae36-703582c48c97",
+    "slug": "o1a",
+    "name": "O-1A Extraordinary Ability",
+    "category": "Visa",
+    "description": "For individuals with extraordinary ability in sciences, education, business, or athletics.",
+    "createdAt": "2026-02-09T19:11:23.237Z",
+    "updatedAt": "2026-02-09T19:11:23.237Z"
+  },
+  {
+    "id": "86a138df-45f8-40f2-b4ba-0241879f451c",
+    "slug": "ead-c09",
+    "name": "EAD Category (c)(9) - Adjustment of Status",
+    "category": "EAD Code",
+    "description": "Pending Green Card application.",
+    "createdAt": "2026-02-09T19:11:23.251Z",
+    "updatedAt": "2026-02-09T19:11:23.251Z"
+  },
+  {
+    "id": "a9a00210-a522-49b9-8738-357db50c1f2d",
+    "slug": "l1a",
+    "name": "L-1A Intracompany Transferee Executive or Manager",
+    "category": "Visa",
+    "description": "For executives/managers transferring from foreign office.",
+    "createdAt": "2026-02-09T19:11:23.262Z",
+    "updatedAt": "2026-02-09T19:11:23.262Z"
+  },
+  {
+    "id": "060e5b7c-d425-4414-91e8-c6e3eafd6ee9",
+    "slug": "l1b",
+    "name": "L-1B Intracompany Transferee Specialized Knowledge",
+    "category": "Visa",
+    "description": "For specialized knowledge staff transferring from foreign office.",
+    "createdAt": "2026-02-09T19:11:23.276Z",
+    "updatedAt": "2026-02-09T19:11:23.276Z"
+  },
+  {
+    "id": "ef903314-a227-485a-a8b0-4cc5c556ddcb",
+    "slug": "e3",
+    "name": "E-3 Specialty Occupation (Australia)",
+    "category": "Visa",
+    "description": "For Australian nationals in specialty occupations.",
+    "createdAt": "2026-02-09T19:11:23.288Z",
+    "updatedAt": "2026-02-09T19:11:23.288Z"
+  },
+  {
+    "id": "5950eacb-952c-4707-9d63-b939926c7b17",
+    "slug": "h4",
+    "name": "H-4 Dependent",
+    "category": "Status",
+    "description": "Spouse or child of H-1B holder.",
+    "createdAt": "2026-02-09T19:11:23.301Z",
+    "updatedAt": "2026-02-09T19:11:23.301Z"
+  },
+  {
+    "id": "868e5e4e-ece1-471a-9d14-10d797f77ac9",
+    "slug": "ead-c26",
+    "name": "EAD Category (c)(26) - H-4 Spouse",
+    "category": "EAD Code",
+    "description": "Spouse of H-1B holder with I-140 approval.",
+    "createdAt": "2026-02-09T19:11:23.313Z",
+    "updatedAt": "2026-02-09T19:11:23.313Z"
+  },
+  {
+    "id": "5d7948fb-66dc-4ab9-8420-44d33c995c89",
+    "slug": "j1",
+    "name": "J-1 Exchange Visitor",
+    "category": "Visa",
+    "description": "Interns, trainees, etc.",
+    "createdAt": "2026-02-09T19:11:23.327Z",
+    "updatedAt": "2026-02-09T19:11:23.327Z"
+  }
+]

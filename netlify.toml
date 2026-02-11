@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Redirect all requests to Next.js
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Environment variables (configure these in Netlify dashboard)
+# DATABASE_URL
+# POSTGRES_PRISMA_URL
+# POSTGRES_URL_NON_POOLING
+# PERPLEXITY_API_KEY

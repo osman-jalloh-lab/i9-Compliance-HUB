@@ -39,7 +39,7 @@ export default async function HubDetailPage({ params }: PageProps) {
 
     return (
         <div className="landingBody" style={{ minHeight: '100vh', background: '#f8fafc' }}>
-            <Navbar themeColor={themeColor} />
+            <Navbar />
 
             <main style={{ padding: '4rem', maxWidth: '1200px', margin: '0 auto' }}>
                 <header style={{ marginBottom: '4rem' }}>

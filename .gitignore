@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# SQLite database files (local development only)
+*.db
+*.db-shm
+*.db-wal
+
+# Build and diagnostic logs
+build_error*.log
+error.log
+seed_error.log
+diag_*.txt

@@ -79,12 +79,26 @@ export default function Chatbot() {
     };
 
     const formatMessage = (text: string) => {
+        let formatted = text;
+
         // Bold: **text** -> <b>text</b>
-        let formatted = text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
+        formatted = formatted.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
+
+        // Bold: *text* -> <b>text</b>
+        formatted = formatted.replace(/\*(.*?)\*/g, "<b>$1</b>");
+
         // Headers: ### text -> <strong>text</strong>
         formatted = formatted.replace(/###\s*(.*)/g, "<strong>$1</strong>");
-        // Newlines for lists
+
+        // Lists: * Item or - Item -> • Item
+        formatted = formatted.replace(/^\s*[\*\-]\s+/gm, "• ");
+
+        // Remove remaining asterisks
+        formatted = formatted.replace(/\*/g, "");
+
+        // Newlines
         formatted = formatted.replace(/\n/g, "<br/>");
+
         return formatted;
     };
 

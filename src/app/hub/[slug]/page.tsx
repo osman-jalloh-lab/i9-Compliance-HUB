@@ -139,6 +139,49 @@ export default async function HubDetailPage({ params }: PageProps) {
                         </div>
                     </section>
 
+                    {/* EAD Specific Extensions & Forms */}
+                    {(data.category.includes('EAD') || data.slug.includes('c09') || data.slug.includes('c33')) && (
+                        <section>
+                            <h2 style={{ fontSize: '1.5rem', fontWeight: '800', marginBottom: '2rem', color: '#0f172a' }}>Extension Rules & Forms</h2>
+                            <div style={{ background: '#FFF7ED', padding: '2.5rem', borderRadius: '24px', border: '1px solid #FED7AA', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)' }}>
+                                <div style={{ marginBottom: '1.5rem' }}>
+                                    <h3 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#9A3412', marginBottom: '0.5rem' }}>Compatible Forms</h3>
+                                    <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                                        <span style={{ background: '#fff', border: '1px solid #FDBA74', color: '#C2410C', padding: '0.25rem 0.75rem', borderRadius: '6px', fontSize: '0.85rem', fontWeight: '700' }}>I-766 (EAD Card)</span>
+                                        <span style={{ background: '#fff', border: '1px solid #FDBA74', color: '#C2410C', padding: '0.25rem 0.75rem', borderRadius: '6px', fontSize: '0.85rem', fontWeight: '700' }}>I-797C (Receipt Notice)</span>
+                                        <span style={{ background: '#fff', border: '1px solid #FDBA74', color: '#C2410C', padding: '0.25rem 0.75rem', borderRadius: '6px', fontSize: '0.85rem', fontWeight: '700' }}>I-797A (Approval Notice)</span>
+                                    </div>
+                                </div>
+
+                                {data.slug.toLowerCase().includes('c33') ? (
+                                    <div style={{ marginBottom: '1.5rem', padding: '1rem', background: '#FEF2F2', borderLeft: '4px solid #EF4444', borderRadius: '4px' }}>
+                                        <div style={{ fontWeight: '800', color: '#991B1B', marginBottom: '0.25rem' }}>⚠️ RESTRICTED: C33 (DACA)</div>
+                                        <p style={{ fontSize: '0.9rem', color: '#B91C1C', margin: 0 }}>
+                                            NOT eligible for automatic extension. Re-verification required prior to expiration date.
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <div style={{ marginBottom: '1.5rem' }}>
+                                        <h3 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#166534', marginBottom: '0.5rem' }}>✅ Automatic Extension Eligible</h3>
+                                        <p style={{ fontSize: '0.9rem', color: '#14532D', lineHeight: '1.5' }}>
+                                            This category is typically eligible for an automatic extension of up to 540 days if a renewal application (I-765) was filed timely.
+                                            Check the I-797C receipt notice date.
+                                        </p>
+                                    </div>
+                                )}
+
+                                <div>
+                                    <h3 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#1E293B', marginBottom: '0.5rem' }}>Compliance Timeline</h3>
+                                    <ul style={{ paddingLeft: '1.25rem', margin: 0, color: '#475569', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                                        <li style={{ marginBottom: '0.5rem' }}><strong>90 Days Out:</strong> First reminder to employee about upcoming expiration.</li>
+                                        <li style={{ marginBottom: '0.5rem' }}><strong>30 Days Out:</strong> Official notification to present new work authorization.</li>
+                                        <li><strong>Expiration Day:</strong> Must stop work if no new proof provided (unless auto-extended).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                    )}
+
                     <section>
                         <h2 style={{ fontSize: '1.5rem', fontWeight: '800', marginBottom: '2rem', color: '#0f172a' }}>Regulatory Sources</h2>
                         <ul style={{ listStyle: 'none', padding: 0, display: 'grid', gap: '1rem' }}>

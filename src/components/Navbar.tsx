@@ -21,6 +21,7 @@ export default function Navbar() {
             <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                 <Link href="/hub" className="navLink">The Explorer</Link>
                 <Link href="/hub/playbook" className="navLink">Scenario Playbook</Link>
+                <Link href="/hub/directory" className="navLink">Compliance Directory</Link>
                 <Link href="/hub/sop" className="navLink">SOP Guides</Link>
                 <div style={{ width: '1px', height: '20px', background: '#e2e8f0', margin: '0 0.5rem' }}></div>
                 <a href="https://www.uscis.gov/i-9" target="_blank" className="navLink" style={{ fontSize: '0.85rem' }}>USCIS I-9 ↗</a>

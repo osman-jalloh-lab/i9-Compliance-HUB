@@ -179,52 +179,6 @@ export default async function HubPage() {
                 <div style={{ marginBottom: '6rem' }}>
                     <I9ScenarioBuilder />
                 </div>
-
-                {/* Directory Section */}
-                <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-                    <h2 style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '3rem', color: '#1E293B', textAlign: 'center' }}>Compliance Directory</h2>
-                    {categories.map((cat) => (
-                        <section key={cat.id} style={{ marginBottom: '5rem' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
-                                <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: cat.color }}></div>
-                                <h2 className="categoryHeader" style={{ margin: 0, border: 'none', padding: 0, color: '#334155' }}>
-                                    {cat.label}
-                                </h2>
-                            </div>
-
-                            <div style={{
-                                display: 'grid',
-                                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                                gap: '1.5rem'
-                            }}>
-                                {allStatuses
-                                    .filter((item: any) => item.category === cat.id)
-                                    .map((item: any) => (
-                                        <Link
-                                            href={`/hub/${item.slug}`}
-                                            key={item.id}
-                                            className="hubCard"
-                                            style={{
-                                                '--category-color': cat.color,
-                                                borderLeft: `4px solid ${cat.color}`,
-                                                borderTop: '1px solid rgba(0,0,0,0.08)' // Override top border from previous style
-                                            } as any}
-                                        >
-                                            <div>
-                                                <div style={{ fontSize: '0.7rem', fontWeight: '800', color: cat.color, marginBottom: '0.5rem', textTransform: 'uppercase' }}>
-                                                    {item.slug}
-                                                </div>
-                                                <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '0.5rem', color: '#1E293B' }}>
-                                                    {item.name}
-                                                </h3>
-                                                <p style={{ color: '#64748B', fontSize: '0.85rem' }}>{item.description || "Detailed guidance available."}</p>
-                                            </div>
-                                        </Link>
-                                    ))}
-                            </div>
-                        </section>
-                    ))}
-                </div>
             </main>
         </div>
     );

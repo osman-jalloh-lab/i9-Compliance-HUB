@@ -71,7 +71,23 @@ export default function LiveFeedCard() {
                             paddingBottom: '1rem',
                             borderBottom: idx === news.length - 1 ? 'none' : '1px solid #334155'
                         }}>
-                            <div style={{ fontSize: '0.95rem', fontWeight: '700', marginBottom: '0.25rem' }}>{item.title}</div>
+                            <a
+                                href={item.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                    fontSize: '0.95rem',
+                                    fontWeight: '700',
+                                    marginBottom: '0.25rem',
+                                    color: '#fff',
+                                    textDecoration: 'none',
+                                    display: 'block'
+                                }}
+                                onMouseOver={(e) => (e.currentTarget.style.color = '#FCA5A5')}
+                                onMouseOut={(e) => (e.currentTarget.style.color = '#fff')}
+                            >
+                                {item.title} ↗
+                            </a>
                             <div style={{ fontSize: '0.8rem', color: '#CBD5E1', lineHeight: '1.4' }}>{item.summary}</div>
                             <div style={{ fontSize: '0.7rem', color: '#64748B', marginTop: '0.5rem' }}>{item.date}</div>
                         </div>

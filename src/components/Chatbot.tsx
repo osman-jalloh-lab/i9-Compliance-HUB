@@ -82,36 +82,29 @@ export default function Chatbot() {
     const formatMessage = (text: string) => {
         let formatted = text;
 
-        // Remove citations like [1], [2], [10]
+        // 1. Remove citations like [1], [2], [10] early
         formatted = formatted.replace(/\[\d+\]/g, "");
 
-        // Bold: **text** -> <b>text</b> (Global)
-        // We use a loop or a better regex to ensure all instances are caught, 
-        // including those that might have been missed by non-greedy matching if nested (though MD usually isn't nested like that).
-        // The previous regex `/\*\*(.*?)\*\*/g` is generally correct for standard markdown, 
-        // but let's make sure we catch everything.
+        // 2. Convert Bold: **text** -> <b>text</b>
         formatted = formatted.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
 
-        // Bold: *text* -> <b>text</b>
+        // 3. Convert Bold: *text* -> <b>text</b>
         formatted = formatted.replace(/\*(.*?)\*/g, "<b>$1</b>");
 
-        // Headers: #### text -> <strong>text</strong> (Handle 4 hashes first)
+        // 4. Convert Headers: ####, ###, ## -> <strong> + <br/>
+        // Order matters: long to short
         formatted = formatted.replace(/####\s*(.*)/g, "<strong>$1</strong><br/>");
-
-        // Headers: ### text -> <strong>text</strong> (Handle 3 hashes)
         formatted = formatted.replace(/###\s*(.*)/g, "<strong>$1</strong><br/>");
-
-        // Headers: ## text -> <strong>text</strong> (Handle 2 hashes)
         formatted = formatted.replace(/##\s*(.*)/g, "<strong>$1</strong><br/>");
 
-        // Lists: * Item or - Item -> • Item
+        // 5. Convert Lists: * Item or - Item -> • Item
         formatted = formatted.replace(/^\s*[\*\-]\s+/gm, "• ");
 
-        // Remove ANY remaining asterisks or hashes that might be left over
+        // 6. CRITICAL: Remove ANY remaining asterisks or hashes that escaped the above
+        // This handles cases where the AI might return single stars or weirdly formatted headers
         formatted = formatted.replace(/[\*#]/g, "");
 
-        // Newlines: convert to <br/>
-        // Note: We handled headers adding their own breaks, but general newlines need converting
+        // 7. Newlines to <br/>
         formatted = formatted.replace(/\n/g, "<br/>");
 
         return formatted;

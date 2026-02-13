@@ -2,9 +2,22 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
+import { z } from "zod";
+
+const chatSchema = z.object({
+    query: z.string().min(1).max(500)
+});
+
 export async function POST(req: Request) {
     try {
-        const { query } = await req.json();
+        const body = await req.json();
+        const validation = chatSchema.safeParse(body);
+
+        if (!validation.success) {
+            return NextResponse.json({ error: "Invalid input" }, { status: 400 });
+        }
+
+        const { query } = validation.data;
         const lowerQuery = query.toLowerCase();
 
         // 1. Entity Extraction (Simple Mock for Local DB)

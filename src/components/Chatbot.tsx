@@ -4,6 +4,7 @@
 import { useState, useRef, useEffect } from "react";
 import styles from "./Chatbot.module.css";
 import DictationButton from "./DictationButton";
+import DOMPurify from "isomorphic-dompurify";
 
 interface Message {
     role: "user" | "bot";
@@ -145,7 +146,7 @@ export default function Chatbot() {
                             <div key={idx} className={`${styles.message} ${styles[msg.role]}`}>
                                 <div
                                     className={styles.content}
-                                    dangerouslySetInnerHTML={{ __html: formatMessage(msg.text) }}
+                                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(formatMessage(msg.text)) }}
                                 />
                                 {msg.chips && (
                                     <div className={styles.chips}>

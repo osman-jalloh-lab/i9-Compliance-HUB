@@ -24,8 +24,8 @@ export default function Navbar() {
                 <Link href="/hub/directory" className="navLink">Compliance Directory</Link>
                 <Link href="/hub/sop" className="navLink">SOP Guides</Link>
                 <div style={{ width: '1px', height: '20px', background: '#e2e8f0', margin: '0 0.5rem' }}></div>
-                <a href="https://www.uscis.gov/i-9" target="_blank" className="navLink" style={{ fontSize: '0.85rem' }}>USCIS I-9 ↗</a>
-                <a href="https://i94.cbp.dhs.gov/" target="_blank" className="navLink" style={{ fontSize: '0.85rem' }}>I-94 ↗</a>
+                <a href="https://www.uscis.gov/i-9" target="_blank" rel="noopener noreferrer" className="navLink" style={{ fontSize: '0.85rem' }}>USCIS I-9 ↗</a>
+                <a href="https://i94.cbp.dhs.gov/" target="_blank" rel="noopener noreferrer" className="navLink" style={{ fontSize: '0.85rem' }}>I-94 ↗</a>
             </div>
         </nav>
     );

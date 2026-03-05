@@ -94,7 +94,7 @@ export default function I9ScenarioBuilder() {
                                     </div>
                                 )}
                                 <div className={styles.links}>
-                                    <a href="https://www.uscis.gov/i-9-central/form-i-9-acceptable-documents" target="_blank">View Official List A/B/C ↗</a>
+                                    <a href="https://www.uscis.gov/i-9-central/form-i-9-acceptable-documents" target="_blank" rel="noopener noreferrer">View Official List A/B/C ↗</a>
                                 </div>
                             </div>
                         </div>

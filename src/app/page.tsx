@@ -95,8 +95,8 @@ export default function LandingPage() {
       }}>
         <div style={{ fontWeight: '600' }}>© 2026 HR Hub. Professional Edition.</div>
         <div style={{ display: 'flex', gap: '2.5rem' }}>
-          <a href="https://www.uscis.gov/i-9" target="_blank" style={{ color: 'inherit', textDecoration: 'none', fontWeight: '500', transition: 'color 0.2s' }} className="footerLink">Official Form I-9</a>
-          <a href="https://i94.cbp.dhs.gov/" target="_blank" style={{ color: 'inherit', textDecoration: 'none', fontWeight: '500', transition: 'color 0.2s' }} className="footerLink">I-94 Website</a>
+          <a href="https://www.uscis.gov/i-9" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', fontWeight: '500', transition: 'color 0.2s' }} className="footerLink">Official Form I-9</a>
+          <a href="https://i94.cbp.dhs.gov/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', fontWeight: '500', transition: 'color 0.2s' }} className="footerLink">I-94 Website</a>
         </div>
       </footer>
     </div>

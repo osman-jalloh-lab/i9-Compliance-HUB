@@ -142,7 +142,7 @@ export default async function HubPage() {
                         gap: '1rem'
                     }}>
                         <div style={{ fontWeight: '800', color: '#475569', fontSize: '0.9rem', textTransform: 'uppercase' }}>Downloads</div>
-                        <a href="https://www.uscis.gov/sites/default/files/document/forms/i-9.pdf" target="_blank" style={{
+                        <a href="https://www.uscis.gov/sites/default/files/document/forms/i-9.pdf" target="_blank" rel="noopener noreferrer" style={{
                             background: '#fff',
                             padding: '0.75rem',
                             borderRadius: '12px',

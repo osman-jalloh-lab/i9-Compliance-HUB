@@ -187,7 +187,7 @@ export default async function HubDetailPage({ params }: PageProps) {
                         <ul style={{ listStyle: 'none', padding: 0, display: 'grid', gap: '1rem' }}>
                             {data.sources.map((source: any) => (
                                 <li key={source.id}>
-                                    <a href={source.url || '#'} target="_blank" className="sourceLink" style={{
+                                    <a href={source.url || '#'} target="_blank" rel="noopener noreferrer" className="sourceLink" style={{
                                         color: '#1e293b',
                                         textDecoration: 'none',
                                         display: 'flex',

@@ -67,7 +67,7 @@ export default function SOPPage() {
                         Source: USCIS M-274 Handbook for Employers. Last Updated: February 2026.
                     </p>
                     <div style={{ marginTop: '2rem' }}>
-                        <a href="https://www.uscis.gov/i-9-central/form-i-9-resources/handbook-for-employers-m-274" target="_blank" className="buttonPrimary" style={{ fontSize: '1rem', padding: '0.75rem 2rem' }}>
+                        <a href="https://www.uscis.gov/i-9-central/form-i-9-resources/handbook-for-employers-m-274" target="_blank" rel="noopener noreferrer" className="buttonPrimary" style={{ fontSize: '1rem', padding: '0.75rem 2rem' }}>
                             Read Official M-274 Handbook ↗
                         </a>
                     </div>

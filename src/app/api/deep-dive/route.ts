@@ -1,9 +1,22 @@
 
 import { NextResponse } from "next/server";
+import { z } from "zod";
+
+const deepDiveSchema = z.object({
+    entityName: z.string().min(1).max(100).regex(/^[a-zA-Z0-9\s\-\/()]+$/, "Invalid entity name"),
+    category: z.string().min(1).max(100).regex(/^[a-zA-Z0-9\s\-\/()]+$/, "Invalid category")
+});
 
 export async function POST(req: Request) {
     try {
-        const { entityName, category } = await req.json();
+        const body = await req.json();
+        const validation = deepDiveSchema.safeParse(body);
+
+        if (!validation.success) {
+            return NextResponse.json({ error: "Invalid input" }, { status: 400 });
+        }
+
+        const { entityName, category } = validation.data;
         const apiKey = process.env.PERPLEXITY_API_KEY;
 
         if (!apiKey) {

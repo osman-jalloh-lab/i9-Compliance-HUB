@@ -65,6 +65,10 @@ export default function Chatbot() {
             });
             const data = await res.json();
 
+            if (!res.ok) {
+                throw new Error(data.error || "Request failed");
+            }
+
             setMessages((prev) => [
                 ...prev,
                 { role: "bot", text: data.response, chips: data.actions }

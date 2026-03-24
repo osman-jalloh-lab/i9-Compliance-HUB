@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
     try {
-        const apiKey = process.env.PERPLEXITY_API_KEY;
+        const apiKey = process.env.ANTHROPIC_API_KEY;
 
         if (!apiKey) {
             // Return mock data if no API key is set, so the UI still looks good for testing
@@ -15,29 +15,29 @@ export async function GET() {
             });
         }
 
-        const response = await fetch("https://api.perplexity.ai/chat/completions", {
+        const response = await fetch("https://api.anthropic.com/v1/messages", {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${apiKey}`,
+                "x-api-key": apiKey,
+                "anthropic-version": "2023-06-01",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                model: "sonar",
-                messages: [
-                    { role: "system", content: "You are a news aggregator for USCIS and I-9 compliance updates. Return a JSON object with a 'news' array containing exactly 3 items. Each item must have 'title', 'date', 'summary', and 'url'. Prioritize official .gov or .dhs sources." },
-                    { role: "user", content: "What are the latest critical USCIS I-9 compliance updates and EAD news from the last 6 months?" }
-                ],
+                model: "claude-haiku-4-5-20251001",
                 max_tokens: 500,
-                temperature: 0.1,
+                system: "You are a news aggregator for USCIS and I-9 compliance updates. Return only a raw JSON object with a 'news' array containing exactly 3 items. Each item must have 'title', 'date', 'summary', and 'url'. No explanation, just JSON.",
+                messages: [
+                    { role: "user", content: "What are the latest critical USCIS I-9 compliance updates and EAD news from the last 6 months?" }
+                ]
             })
         });
 
         if (!response.ok) {
-            throw new Error(`Perplexity API Error: ${response.statusText}`);
+            throw new Error(`Claude API Error: ${response.statusText}`);
         }
 
         const data = await response.json();
-        const content = data.choices[0].message.content;
+        const content = data.content[0].text;
 
         // Attempt to parse JSON from the response text
         const jsonMatch = content.match(/\{[\s\S]*\}/);

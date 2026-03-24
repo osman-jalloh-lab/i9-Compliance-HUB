@@ -61,37 +61,37 @@ export async function POST(req: Request) {
             }
         }
 
-        // 3. AI Fallback (Perplexity)
-        const apiKey = process.env.PERPLEXITY_API_KEY;
+        // 3. AI Fallback (Claude)
+        const apiKey = process.env.ANTHROPIC_API_KEY;
 
         if (!apiKey) {
             return NextResponse.json({ response: "I'm currently unable to access my AI knowledge base. Please check your API key configuration." });
         }
 
-        const aiResponse = await fetch("https://api.perplexity.ai/chat/completions", {
+        const aiResponse = await fetch("https://api.anthropic.com/v1/messages", {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${apiKey}`,
+                "x-api-key": apiKey,
+                "anthropic-version": "2023-06-01",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                model: "sonar",
-                messages: [
-                    { role: "system", content: "You are an expert HR Immigration Compliance Assistant. Answer strictly based on USCIS M-274 and official DHS regulations. Be concise and professional." },
-                    { role: "user", content: query }
-                ],
+                model: "claude-haiku-4-5-20251001",
                 max_tokens: 1000,
-                temperature: 0.2
+                system: "You are an expert HR Immigration Compliance Assistant. Answer strictly based on USCIS M-274 and official DHS regulations. Be concise and professional.",
+                messages: [
+                    { role: "user", content: query }
+                ]
             })
         });
 
         if (!aiResponse.ok) {
-            console.error("Perplexity API Error:", await aiResponse.text());
+            console.error("Claude API Error:", await aiResponse.text());
             return NextResponse.json({ response: "I encountered an error connecting to my knowledge base. Please try again later." });
         }
 
         const data = await aiResponse.json();
-        const aiText = data.choices[0].message.content;
+        const aiText = data.content[0].text;
 
         return NextResponse.json({ response: aiText, actions: [] });
 

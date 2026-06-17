@@ -21,24 +21,17 @@ export default async function HubPage() {
     ];
 
     return (
-        <div className="landingBody" style={{ minHeight: '100vh', background: '#f8fafc', color: '#1e293b' }}>
+        <div className="landingBody" style={{ minHeight: '100dvh' }}>
             <Navbar />
 
             <main style={{ padding: '2rem', maxWidth: '1600px', margin: '0 auto' }}>
 
                 {/* Header */}
                 <header style={{ textAlign: 'center', marginBottom: '4rem', marginTop: '2rem' }}>
-                    <h1 style={{
-                        fontFamily: "'Inter', sans-serif", // Or a serif font if imported
-                        fontSize: '4rem',
-                        fontWeight: '800',
-                        color: '#0F172A',
-                        marginBottom: '1rem',
-                        letterSpacing: '-2px'
-                    }}>
+                    <h1 className="hub-h1" style={{ letterSpacing: '-2px' }}>
                         HR Compliance Hub
                     </h1>
-                    <p style={{ fontSize: '1.25rem', color: '#64748B', maxWidth: '600px', margin: '0 auto' }}>
+                    <p className="hub-subtitle" style={{ maxWidth: '600px', margin: '0 auto' }}>
                         Your central command for I-9 verification, EAD tracking, and immigration compliance.
                     </p>
                 </header>
@@ -63,13 +56,10 @@ export default async function HubPage() {
                     </div>
 
                     {/* New Rules 2025 - Medium Card (Span 4 cols) */}
-                    <div style={{
+                    <div className="bento-card-warm" style={{
                         gridColumn: 'span 4',
-                        background: '#FFF7ED',
-                        borderRadius: '24px',
                         padding: '2rem',
                         position: 'relative',
-                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
                         overflow: 'hidden',
                         display: 'flex',
                         flexDirection: 'column',
@@ -79,98 +69,95 @@ export default async function HubPage() {
                             position: 'absolute',
                             top: '1.5rem',
                             right: '1.5rem',
-                            background: '#F97316',
-                            color: 'white',
+                            background: 'var(--warn)',
+                            color: '#09090B',
                             padding: '0.25rem 0.75rem',
                             borderRadius: '999px',
-                            fontSize: '0.7rem',
-                            fontWeight: '800'
+                            fontSize: '0.6875rem',
+                            fontWeight: '800',
+                            letterSpacing: '0.06em'
                         }}>NEW</div>
-                        <h3 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#9A3412', marginBottom: '0.5rem' }}>Updated Rules 2025</h3>
-                        <p style={{ color: '#C2410C', lineHeight: '1.5' }}>
+                        <h3 style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--t1)', marginBottom: '0.5rem' }}>Updated Rules 2025</h3>
+                        <p style={{ color: 'var(--t2)', lineHeight: '1.5' }}>
                             Major changes to remote verification for E-Verify employers. New retention guidelines effective Jan 1st.
                         </p>
-                        <a href="#" style={{ marginTop: '1rem', color: '#EA580C', fontWeight: '700', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <a href="#" style={{ marginTop: '1rem', color: 'var(--accent)', fontWeight: '700', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                             Read Policy Memo <span>→</span>
                         </a>
                     </div>
 
                     {/* Recent I-9 Updates Timeline - Wide Card (Span 6 cols) */}
-                    <div style={{
+                    <div className="bento-card" style={{
                         gridColumn: 'span 6',
-                        background: '#FFFFFF',
-                        borderRadius: '24px',
                         padding: '2rem',
-                        boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.05)',
-                        border: '1px solid #E2E8F0'
                     }}>
-                        <h3 style={{ fontSize: '1.25rem', fontWeight: '800', marginBottom: '1.5rem', color: '#1E293B' }}>Recent I-9 Updates</h3>
+                        <h3 style={{ fontSize: '1.125rem', fontWeight: '800', marginBottom: '1.5rem', color: 'var(--t1)' }}>Recent I-9 Updates</h3>
                         <div style={{ display: 'grid', gap: '1rem' }}>
                             <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                                <div style={{ minWidth: '8px', height: '8px', borderRadius: '50%', background: '#CBD5E1' }}></div>
+                                <div style={{ minWidth: '7px', height: '7px', borderRadius: '50%', background: 'var(--border-hi)', flexShrink: 0 }}></div>
                                 <div>
-                                    <span style={{ fontSize: '0.85rem', fontWeight: '700', color: '#64748B', display: 'block' }}>Aug 01, 2023</span>
-                                    <span style={{ fontWeight: '600', color: '#334155' }}>New Form I-9 Edition (08/01/23) Released</span>
+                                    <span style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--t3)', display: 'block', letterSpacing: '0.04em' }}>Aug 01, 2023</span>
+                                    <span style={{ fontWeight: '600', color: 'var(--t1)', fontSize: '0.9375rem' }}>New Form I-9 Edition (08/01/23) Released</span>
                                 </div>
                             </div>
                             <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                                <div style={{ minWidth: '8px', height: '8px', borderRadius: '50%', background: '#CBD5E1' }}></div>
+                                <div style={{ minWidth: '7px', height: '7px', borderRadius: '50%', background: 'var(--border-hi)', flexShrink: 0 }}></div>
                                 <div>
-                                    <span style={{ fontSize: '0.85rem', fontWeight: '700', color: '#64748B', display: 'block' }}>Jul 21, 2023</span>
-                                    <span style={{ fontWeight: '600', color: '#334155' }}>DHS Announcement on Remote Verification</span>
+                                    <span style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--t3)', display: 'block', letterSpacing: '0.04em' }}>Jul 21, 2023</span>
+                                    <span style={{ fontWeight: '600', color: 'var(--t1)', fontSize: '0.9375rem' }}>DHS Announcement on Remote Verification</span>
                                 </div>
                             </div>
                             <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                                <div style={{ minWidth: '8px', height: '8px', borderRadius: '50%', background: '#CBD5E1' }}></div>
+                                <div style={{ minWidth: '7px', height: '7px', borderRadius: '50%', background: 'var(--border-hi)', flexShrink: 0 }}></div>
                                 <div>
-                                    <span style={{ fontSize: '0.85rem', fontWeight: '700', color: '#64748B', display: 'block' }}>May 04, 2022</span>
-                                    <span style={{ fontWeight: '600', color: '#334155' }}>Automatic EAD Extension increased to 540 days</span>
+                                    <span style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--t3)', display: 'block', letterSpacing: '0.04em' }}>May 04, 2022</span>
+                                    <span style={{ fontWeight: '600', color: 'var(--t1)', fontSize: '0.9375rem' }}>Automatic EAD Extension increased to 540 days</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     {/* Form Downloads - Small Card (Span 2 cols) */}
-                    <div style={{
+                    <div className="bento-card" style={{
                         gridColumn: 'span 2',
-                        background: '#F1F5F9',
-                        borderRadius: '24px',
                         padding: '1.5rem',
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
                         gap: '1rem'
                     }}>
-                        <div style={{ fontWeight: '800', color: '#475569', fontSize: '0.9rem', textTransform: 'uppercase' }}>Downloads</div>
+                        <div style={{ fontWeight: '700', color: 'var(--t3)', fontSize: '0.6875rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Downloads</div>
                         <a href="https://www.uscis.gov/sites/default/files/document/forms/i-9.pdf" target="_blank" rel="noopener noreferrer" style={{
-                            background: '#fff',
+                            background: 'var(--bg-surface)',
+                            border: '1px solid var(--border)',
                             padding: '0.75rem',
-                            borderRadius: '12px',
+                            borderRadius: '10px',
                             display: 'flex',
                             alignItems: 'center',
                             gap: '0.5rem',
                             textDecoration: 'none',
-                            color: '#1E293B',
+                            color: 'var(--t1)',
                             fontWeight: '600',
-                            fontSize: '0.9rem',
-                            boxShadow: '0 1px 2px 0 rgba(0,0,0,0.05)'
+                            fontSize: '0.875rem',
+                            transition: 'border-color 0.2s ease',
                         }}>
-                            📄 Form I-9
+                            Form I-9
                         </a>
                         <a href="#" style={{
-                            background: '#fff',
+                            background: 'var(--bg-surface)',
+                            border: '1px solid var(--border)',
                             padding: '0.75rem',
-                            borderRadius: '12px',
+                            borderRadius: '10px',
                             display: 'flex',
                             alignItems: 'center',
                             gap: '0.5rem',
                             textDecoration: 'none',
-                            color: '#1E293B',
+                            color: 'var(--t1)',
                             fontWeight: '600',
-                            fontSize: '0.9rem',
-                            boxShadow: '0 1px 2px 0 rgba(0,0,0,0.05)'
+                            fontSize: '0.875rem',
+                            transition: 'border-color 0.2s ease',
                         }}>
-                            📄 Form I-95
+                            M-274 Handbook
                         </a>
                     </div>
                 </div>

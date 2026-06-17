@@ -7,9 +7,8 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL") // Connection pooling
-  directUrl = env("DIRECT_URL") // Direct connection
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
 // Core Entity: Represents a Visa Type (H-1B) or a Status (EAD C09)
@@ -25,6 +24,7 @@ model VisaOrStatus {
   workAuthorization WorkAuthorization?
   i9Actions         I9Action[]
   sources           Source[]
+  documentRules     DocumentRule[]
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -32,26 +32,49 @@ model VisaOrStatus {
 
 // Work Authorization Rules
 model WorkAuthorization {
-  id              String       @id @default(uuid())
-  visaId          String       @unique
-  visa            VisaOrStatus @relation(fields: [visaId], references: [id])
+  id                        String       @id @default(uuid())
+  visaId                    String       @unique
+  visa                      VisaOrStatus @relation(fields: [visaId], references: [id])
   
-  canWork         Boolean      @default(false)
-  requiresSponsorship Boolean @default(false)
-  maxDuration     String?      // e.g., "3 years initial, 6 years max"
-  restrictions    String?      // e.g., "Specific employer only"
+  canWork                   Boolean      @default(false)
+  requiresSponsorship       Boolean      @default(false)
+  maxDuration               String?      // e.g., "3 years initial, 6 years max"
+  restrictions              String?      // e.g., "Specific employer only"
   
   // I-9 Specifics
-  documentTypes   String
+  documentTypes             String
+  reverificationRequired    Boolean      @default(false)
+  eadAutoExtensionEligible  Boolean      @default(false)
+  autoExtensionAuthority    String?
+  autoExtensionEffectiveDate DateTime?
 }
 
 // I-9 Acceptable Documents (Reference Table)
 model I9Doc {
-  id          String @id @default(uuid())
-  code        String @unique // e.g., "passport", "ead_card"
-  name        String
-  listType    String // "A", "B", "C"
-  description String?
+  id                 String  @id @default(uuid())
+  code               String  @unique // e.g., "passport", "ead_card"
+  name               String
+  listType           String  // "A", "B", "C"
+  description        String?
+  validForReverification Boolean @default(true)
+  
+  documentRules      DocumentRule[]
+}
+
+model DocumentRule {
+  id            String       @id @default(uuid())
+  visaId        String
+  visa          VisaOrStatus @relation(fields: [visaId], references: [id])
+  context       String       // "initial" | "reverify" | "rehire"
+  docCode       String
+  doc           I9Doc        @relation(fields: [docCode], references: [code])
+  acceptable    Boolean      // true = accept, false = explicitly reject
+  listType      String       // "A" | "B" | "C"
+  reason        String?      // why rejected, e.g. "restricted SSN legend"
+  effectiveDate DateTime
+  sourceUrl     String?
+
+  @@unique([visaId, context, docCode])
 }
 
 // HR Actions / Triggers

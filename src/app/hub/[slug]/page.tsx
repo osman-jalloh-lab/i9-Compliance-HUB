@@ -20,12 +20,23 @@ export default async function HubDetailPage({ params }: PageProps) {
             workAuthorization: true,
             i9Actions: true,
             sources: true,
+            documentRules: {
+                where: { context: "initial", acceptable: true },
+                include: { doc: true },
+                orderBy: [{ listType: "asc" }, { docCode: "asc" }],
+            },
         },
     });
 
     if (!data) {
         notFound();
     }
+
+    const initialDocumentsByList = {
+        A: data.documentRules.filter((rule) => rule.listType === "A"),
+        B: data.documentRules.filter((rule) => rule.listType === "B"),
+        C: data.documentRules.filter((rule) => rule.listType === "C"),
+    };
 
     const categoryColors: Record<string, string> = {
         'Visa': 'var(--color-visa)',
@@ -136,6 +147,31 @@ export default async function HubDetailPage({ params }: PageProps) {
                             <p style={{ marginTop: '1.5rem', fontSize: '0.85rem', color: '#64748b' }}>
                                 Employers must examine one document from List A <strong>OR</strong> one from List B and one from List C.
                             </p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 style={{ fontSize: '1.5rem', fontWeight: '800', marginBottom: '2rem', color: '#0f172a' }}>Initial Acceptable Documents</h2>
+                        <div style={{ background: '#fff', padding: '2.5rem', borderRadius: '24px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)' }}>
+                            {data.documentRules.length > 0 ? (
+                                <div style={{ display: 'grid', gap: '1.5rem' }}>
+                                    {['A', 'B', 'C'].map((listType) => (
+                                        <div key={listType}>
+                                            <h3 style={{ margin: '0 0 0.75rem 0', fontSize: '1rem', color: '#334155' }}>List {listType}</h3>
+                                            <ul style={{ paddingLeft: '1.25rem', margin: 0, color: '#475569', fontSize: '0.95rem', lineHeight: '1.7' }}>
+                                                {initialDocumentsByList[listType as keyof typeof initialDocumentsByList].map((rule) => (
+                                                    <li key={rule.docCode}>{rule.doc.name}</li>
+                                                ))}
+                                                {initialDocumentsByList[listType as keyof typeof initialDocumentsByList].length === 0 && (
+                                                    <li style={{ color: '#94a3b8' }}>No seeded List {listType} documents for this status.</li>
+                                                )}
+                                            </ul>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <p style={{ color: '#64748b' }}>No initial document rule guidance is available for this status yet.</p>
+                            )}
                         </div>
                     </section>
 

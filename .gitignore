@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# ignore nested clone folder
+i9-Compliance-HUB/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
